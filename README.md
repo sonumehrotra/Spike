@@ -3,7 +3,7 @@
 ## Build & Run ##
 
 ```sh
-$ cd MyFirstScalatra
+$ cd Spike
 $ ./sbt
 > jetty:start
 > browse
