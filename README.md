@@ -14,11 +14,11 @@ If `browse` doesn't launch your browser, manually open [http://localhost:8080/](
 
 ##How to Run auth Module: ##
 
-$ cd Spike
-$ sbt "run-main com.knoldus.auth.sample.SampleAcn" -Djava.security.auth.login.config=src/main/scala/com/knoldus/auth/sample_jaas.config
+$ cd Spike  
+$ sbt "run-main com.knoldus.auth.sample.SampleAcn" -Djava.security.auth.login.config=src/main/scala/com/knoldus/auth/sample_jaas.config  
 
-It will prompt you to enter user name and password: 
+It will prompt you to enter user name and password:   
 
-Expected username is: "testUser"
-Expected password is: "testPassword"
+Expected username is: "testUser"  
+Expected password is: "testPassword"  
 
