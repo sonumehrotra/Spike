@@ -1,24 +1,31 @@
 package com.knoldus.api
 
-import org.scalatra._
+import akka.actor.{ActorSystem, Props}
 
 class MyScalatraServlet extends MyfirstscalatraStack {
-
+  val system = ActorSystem("example")
+  val persistentActor = system.actorOf(Props[ExamplePersistentActor], "persistentActor-4-scala")
   get("/get") {
-   "Hello World"
+    persistentActor ! "print"
   }
 
   put("/put") {
-    "Hello World"
+    persistentActor ! Cmd("put")
+    "put"
+
   }
 
   post("/post") {
-    "Hello World"
+    persistentActor ! Cmd("post")
+    persistentActor ! "snap"
+    "snap"
+
   }
 
   delete("/delete") {
-    "Hello World"
+    persistentActor ! Cmd("delete")
+    persistentActor ! "print"
+    "print"
   }
-
 
 }

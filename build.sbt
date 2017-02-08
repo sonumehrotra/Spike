@@ -32,7 +32,13 @@ libraryDependencies ++= Seq(
   "info.cukes" % "cucumber-scala_2.11" % "1.2.5",
   "info.cukes" % "cucumber-jvm" % "1.2.4",
   "org.mockito" % "mockito-core" % "1.9.5",
-  "com.waioeka.sbt" %% "cucumber-runner" % "0.0.5"
+  "com.waioeka.sbt" %% "cucumber-runner" % "0.0.5",
+  "com.typesafe.akka" %% "akka-persistence" % "2.4.16",
+  "org.iq80.leveldb"            % "leveldb"          % "0.7",
+  "org.fusesource.leveldbjni"   % "leveldbjni-all"   % "1.8",
+  "com.typesafe.akka" %% "akka-actor" % "2.4.11",
+  "org.iq80.leveldb"            % "leveldb"          % "0.7",
+  "org.fusesource.leveldbjni"   % "leveldbjni-all"   % "1.8"
 )
 
 scalateTemplateConfig in Compile := {
