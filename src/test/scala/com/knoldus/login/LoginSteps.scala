@@ -29,6 +29,30 @@ class LoginSteps extends EN with ScalaDsl with ScalatraSuite {
     }
   }
 
+  When("""^I hit on route put with value "([^"]*)"$""") { (arg0: String) =>
+    result = put(s"/$arg0") {
+      val stat = status
+      val b = body
+      (stat, b)
+    }
+  }
+
+  When("""^I hit on route post with value "([^"]*)"$""") { (arg0: String) =>
+    result = post(s"/$arg0") {
+      val stat = status
+      val b = body
+      (stat, b)
+    }
+  }
+
+  When("""^I hit on route delete with value "([^"]*)"$""") { (arg0: String) =>
+    result = delete(s"/$arg0") {
+      val stat = status
+      val b = body
+      (stat, b)
+    }
+  }
+
   Then("""^the response should be "([^"]*)"$""") { (arg0: String) =>
     result._2 shouldEqual (arg0)
   }
