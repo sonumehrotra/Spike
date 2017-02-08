@@ -1,0 +1,70 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 6,
+        "name": "Check post request for login",
+        "description": "",
+        "id": "login;check-post-request-for-login",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 298900754,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "my server is running",
+            "match": {
+              "location": "LoginSteps.scala:21"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 690030587,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "I hit on route get with value \"hello\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "hello",
+                  "offset": 31
+                }
+              ],
+              "location": "LoginSteps.scala:24"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 5358444,
+              "status": "passed"
+            },
+            "line": 9,
+            "name": "the response should be \"Hello World\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Hello World",
+                  "offset": 24
+                }
+              ],
+              "location": "LoginSteps.scala:32"
+            },
+            "keyword": "Then "
+          }
+        ]
+      }
+    ],
+    "name": "Login",
+    "description": "In order to avoid making mistakes\nAs a developer\nI want to check the login",
+    "id": "login",
+    "keyword": "Feature",
+    "uri": "Login.feature"
+  }
+]
