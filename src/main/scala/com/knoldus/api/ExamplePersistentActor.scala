@@ -44,11 +44,3 @@ class ExamplePersistentActor extends PersistentActor {
   }
 
 }
-
-
-object PersistentActorExample {
-  val system = ActorSystem("example")
-  val persistentActor = system.actorOf(Props[ExamplePersistentActor], "persistentActor-4-scala")
-  Thread.sleep(10000)
-  system.terminate()
-}
