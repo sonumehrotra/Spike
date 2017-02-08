@@ -4,8 +4,21 @@ import org.scalatra._
 
 class MyScalatraServlet extends MyfirstscalatraStack {
 
-  get("/hello") {
+  get("/get") {
    "Hello World"
   }
+
+  put("/put") {
+    "Hello World"
+  }
+
+  post("/post") {
+    "Hello World"
+  }
+
+  delete("/delete") {
+    "Hello World"
+  }
+
 
 }
