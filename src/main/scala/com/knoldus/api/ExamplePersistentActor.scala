@@ -44,3 +44,4 @@ class ExamplePersistentActor extends PersistentActor {
   }
 
 }
+
