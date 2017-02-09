@@ -13,12 +13,49 @@ If `browse` doesn't launch your browser, manually open [http://localhost:8080/](
 
 
 ##How to Run auth Module: ##
-
+```sh
 $ cd Spike  
 $ sbt "run-main com.knoldus.auth.sample.SampleAcn" -Djava.security.auth.login.config=src/main/scala/com/knoldus/auth/sample_jaas.config  
-
+```  
 It will prompt you to enter user name and password:   
 
 Expected username is: "testUser"  
 Expected password is: "testPassword"  
 
+
+##Setting MySQL as persistent storage: ##  
+
+* Install MySQL  
+
+* Login as user: "root" and password: "root"  
+
+* Create database "test"  
+
+Run the following scripts to create persistent tables:  
+
+```sh
+CREATE TABLE IF NOT EXISTS persistence_metadata (
+  persistence_key BIGINT NOT NULL AUTO_INCREMENT,
+  persistence_id VARCHAR(255) NOT NULL,
+  sequence_nr BIGINT NOT NULL,
+  PRIMARY KEY (persistence_key),
+  UNIQUE (persistence_id)
+) ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS persistence_journal (
+  persistence_key BIGINT NOT NULL,
+  sequence_nr BIGINT NOT NULL,
+  message BLOB NOT NULL,
+  PRIMARY KEY (persistence_key, sequence_nr),
+  FOREIGN KEY (persistence_key) REFERENCES persistence_metadata (persistence_key)
+) ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS persistence_snapshot (
+  persistence_key BIGINT NOT NULL,
+  sequence_nr BIGINT NOT NULL,
+  created_at BIGINT NOT NULL,
+  snapshot BLOB NOT NULL,
+  PRIMARY KEY (persistence_key, sequence_nr),
+  FOREIGN KEY (persistence_key) REFERENCES persistence_metadata (persistence_key)
+) ENGINE = InnoDB;
+```  

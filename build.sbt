@@ -37,8 +37,8 @@ libraryDependencies ++= Seq(
   "org.iq80.leveldb"            % "leveldb"          % "0.7",
   "org.fusesource.leveldbjni"   % "leveldbjni-all"   % "1.8",
   "com.typesafe.akka" %% "akka-actor" % "2.4.11",
-  "org.iq80.leveldb"            % "leveldb"          % "0.7",
-  "org.fusesource.leveldbjni"   % "leveldbjni-all"   % "1.8"
+  "com.okumin" %% "akka-persistence-sql-async" % "0.4.0",
+  "com.github.mauricio" %% "mysql-async" % "0.2.20"
 )
 
 scalateTemplateConfig in Compile := {
