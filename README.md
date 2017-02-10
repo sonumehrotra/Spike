@@ -59,3 +59,27 @@ CREATE TABLE IF NOT EXISTS persistence_snapshot (
   FOREIGN KEY (persistence_key) REFERENCES persistence_metadata (persistence_key)
 ) ENGINE = InnoDB;
 ```  
+
+### Subscribing AMPS messages ###
+
+* Before Running this Project your AMPS server must be running   
+* Go to AMPSDIR (The directory where AMPS is located on the machine) and hit:   
+```sh 
+./bin/spark subscribe -server localhost:9007 -type json -topic messages
+
+```  
+Here "localhost:9007" is the server where AMPS is running"  
+
+This will subscribe to messages that are being published on the topic "messages".  
+
+
+
+
+
+
+
+
+
+
+
+
