@@ -2,9 +2,10 @@ package com.knoldus.api
 
 import akka.actor.{ActorSystem, Props}
 import com.knoldus.amps.Publisher
+import com.knoldus.auth.scalatra.AuthenticationSupport
 import com.typesafe.config.ConfigFactory
 
-class MyScalatraServlet extends MyfirstscalatraStack {
+class MyScalatraServlet extends MyfirstscalatraStack with AuthenticationSupport {
 
   val system = ActorSystem("PersistentActorExample")
   val persistentActor = system.actorOf(Props[ExamplePersistentActor], "persistentActor-4-scala")
@@ -19,8 +20,19 @@ class MyScalatraServlet extends MyfirstscalatraStack {
   val ampsClient = Publisher
     .getPublisherClient(AMPS_CLIENT_NAME,AMPS_SERVER_URL)
 
-  get("/get") {
+  get("/*") {
+    println("Getting requires!!!!!!!")
+    basicAuth
+    <html>
+      <body>
+        <h1>Hello from Scalatra</h1>
+        <p>Your token is scalatra</p>
+        <p>You are authenticated.</p>
+      </body>
+    </html>
+  }
 
+  get("/get") {
     /** Publish a message with topic 'messages' */
     ampsClient.publish("messages", "{ \"message\" : \"Hello, Get!\" }")
     persistentActor ! "print"
