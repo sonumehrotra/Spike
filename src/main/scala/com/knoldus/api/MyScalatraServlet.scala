@@ -36,33 +36,35 @@ class MyScalatraServlet extends MyfirstscalatraStack with AuthenticationSupport 
   get("/get") {
     basicAuth
     /** Publish a message with topic 'messages' */
-    ampsClient.publish("messages", "{ \"message\" : \"Hello, Get!\" }")
+    ampsClient.publish("messages", s"""{ "message" : "Hello ${user.id}!" }""")
     persistentActor ! "print"
   }
 
   put("/put") {
    basicAuth.map { user =>
-     ampsClient.publish("messages", "{ \"message\" : \"Hello, Put!\" }")
+     /**Publish a message to AMPS server on topic 'messages' */
+     ampsClient.publish("messages", s"""{ "message" : "Hello, Put from ${user.id}!" }""")
      persistentActor ! Cmd("put")
      "put"
-   }.getOrElse( GSSException.UNAUTHORIZED)
+   }.getOrElse( "Put Response: You can't use the server " + GSSException.UNAUTHORIZED)
   }
 
   post("/post") {
-    basicAuth
-    ampsClient.publish("messages", "{ \"message\" : \"Hello, Post!\" }")
-    persistentActor ! Cmd("post")
-    persistentActor ! "snap"
-    "snap"
-
+    basicAuth.map { user =>
+      ampsClient.publish("messages", s"""{ "message" : "Hello, Post from ${user.id}!" }""")
+      persistentActor ! Cmd("post")
+      persistentActor ! "snap"
+      "snap"
+    }.getOrElse( "Post Response: You can't use the server " + GSSException.UNAUTHORIZED)
   }
 
   delete("/delete") {
-    basicAuth
-    ampsClient.publish("messages", "{ \"message\" : \"Hello, Delete!\" }")
-    persistentActor ! Cmd("delete")
-    persistentActor ! "print"
-    "print"
+    basicAuth.map { user =>
+      ampsClient.publish("messages", s"""{ "message" : "Hello, Deleted ${user.id} !" }""")
+      persistentActor ! Cmd("delete")
+      persistentActor ! "print"
+      "print"
+    }.getOrElse( "Delete Response: You can't use the server " + GSSException.UNAUTHORIZED)
   }
 
 }
