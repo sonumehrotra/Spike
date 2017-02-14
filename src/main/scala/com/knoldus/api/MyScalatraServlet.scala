@@ -2,8 +2,9 @@ package com.knoldus.api
 
 import akka.actor.{ActorSystem, Props}
 import com.knoldus.amps.Publisher
-import com.knoldus.auth.scalatra.AuthenticationSupport
+import com.knoldus.auth.scalatra.{AuthenticationSupport, User}
 import com.typesafe.config.ConfigFactory
+import org.ietf.jgss.GSSException
 
 class MyScalatraServlet extends MyfirstscalatraStack with AuthenticationSupport {
 
@@ -33,19 +34,22 @@ class MyScalatraServlet extends MyfirstscalatraStack with AuthenticationSupport 
   }
 
   get("/get") {
+    basicAuth
     /** Publish a message with topic 'messages' */
     ampsClient.publish("messages", "{ \"message\" : \"Hello, Get!\" }")
     persistentActor ! "print"
   }
 
   put("/put") {
-
-    ampsClient.publish("messages", "{ \"message\" : \"Hello, Put!\" }")
-    persistentActor ! Cmd("put")
-    "put"
+   basicAuth.map { user =>
+     ampsClient.publish("messages", "{ \"message\" : \"Hello, Put!\" }")
+     persistentActor ! Cmd("put")
+     "put"
+   }.getOrElse( GSSException.UNAUTHORIZED)
   }
 
   post("/post") {
+    basicAuth
     ampsClient.publish("messages", "{ \"message\" : \"Hello, Post!\" }")
     persistentActor ! Cmd("post")
     persistentActor ! "snap"
@@ -54,6 +58,7 @@ class MyScalatraServlet extends MyfirstscalatraStack with AuthenticationSupport 
   }
 
   delete("/delete") {
+    basicAuth
     ampsClient.publish("messages", "{ \"message\" : \"Hello, Delete!\" }")
     persistentActor ! Cmd("delete")
     persistentActor ! "print"
