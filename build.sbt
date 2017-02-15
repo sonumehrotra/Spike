@@ -38,7 +38,11 @@ libraryDependencies ++= Seq(
   "org.fusesource.leveldbjni"   % "leveldbjni-all"   % "1.8",
   "com.typesafe.akka" %% "akka-actor" % "2.4.11",
   "com.okumin" %% "akka-persistence-sql-async" % "0.4.0",
-  "com.github.mauricio" %% "mysql-async" % "0.2.20"
+  "com.github.mauricio" %% "mysql-async" % "0.2.20",
+  "net.sourceforge.jtds"      %     "jtds" % "1.3.1",
+  "com.typesafe.slick"        %%    "slick"               %   "3.0.0",
+  "com.typesafe.slick"        %%    "slick-extensions"    %   "3.0.0",
+  "org.scala-lang.modules" % "scala-async_2.11" % "0.9.6-RC2"
 )
 
 scalateTemplateConfig in Compile := {
