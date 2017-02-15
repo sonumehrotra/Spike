@@ -6,10 +6,10 @@ import com.knoldus.auth.scalatra.{AuthenticationSupport, User}
 import com.typesafe.config.ConfigFactory
 import org.ietf.jgss.GSSException
 
-class MyScalatraServlet extends MyfirstscalatraStack with AuthenticationSupport {
+class ScalatraSpikeServlet extends ScalatraSpikeServer with AuthenticationSupport {
 
   val system = ActorSystem("PersistentActorExample")
-  val persistentActor = system.actorOf(Props[ExamplePersistentActor], "persistentActor-4-scala")
+  val persistentActor = system.actorOf(Props[EventPersistentActor], "persistentActor-4-scala")
 
   val configuration = ConfigFactory.load("application.conf")
 
@@ -44,7 +44,7 @@ class MyScalatraServlet extends MyfirstscalatraStack with AuthenticationSupport 
    basicAuth.map { user =>
      /**Publish a message to AMPS server on topic 'messages' */
      ampsClient.publish("messages", s"""{ "message" : "Hello, Put from ${user.id}!" }""")
-     persistentActor ! Cmd("put")
+     persistentActor ! Command("put")
      "put"
    }.getOrElse( "Put Response: You can't use the server " + GSSException.UNAUTHORIZED)
   }
@@ -52,7 +52,7 @@ class MyScalatraServlet extends MyfirstscalatraStack with AuthenticationSupport 
   post("/post") {
     basicAuth.map { user =>
       ampsClient.publish("messages", s"""{ "message" : "Hello, Post from ${user.id}!" }""")
-      persistentActor ! Cmd("post")
+      persistentActor ! Command("post")
       persistentActor ! "snap"
       "snap"
     }.getOrElse( "Post Response: You can't use the server " + GSSException.UNAUTHORIZED)
@@ -61,7 +61,7 @@ class MyScalatraServlet extends MyfirstscalatraStack with AuthenticationSupport 
   delete("/delete") {
     basicAuth.map { user =>
       ampsClient.publish("messages", s"""{ "message" : "Hello, Deleted ${user.id} !" }""")
-      persistentActor ! Cmd("delete")
+      persistentActor ! Command("delete")
       persistentActor ! "print"
       "print"
     }.getOrElse( "Delete Response: You can't use the server " + GSSException.UNAUTHORIZED)

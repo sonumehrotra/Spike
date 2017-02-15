@@ -1,6 +1,6 @@
 package com.knoldus.login
 
-import com.knoldus.api.MyScalatraServlet
+import com.knoldus.api.ScalatraSpikeServlet
 import com.waioeka.sbt.runner.CucumberRunner
 import cucumber.api.PendingException
 import cucumber.api.scala.{EN, ScalaDsl}
@@ -12,7 +12,7 @@ class CucumberTestSuite extends CucumberRunner
 
 class LoginSteps extends EN with ScalaDsl with ScalatraSuite {
 
-  addServlet(classOf[MyScalatraServlet], "/*")
+  addServlet(classOf[ScalatraSpikeServlet], "/*")
   var result: (Int, String) = _
 
   start()
