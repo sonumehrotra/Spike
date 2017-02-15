@@ -1,4 +1,4 @@
-# MyFirstScalatra #
+# Project POC #
 
 ## Build & Run ##
 
@@ -71,6 +71,10 @@ CREATE TABLE IF NOT EXISTS persistence_snapshot (
 Here "localhost:9007" is the server where AMPS is running"  
 
 This will subscribe to messages that are being published on the topic "messages".  
+
+## To install SQL Server on Ubuntu please follow the below links
+
+https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-setup-ubuntu
 
 
 
