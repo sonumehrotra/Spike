@@ -67,3 +67,9 @@ jrebel.lic
 
 # paulp script
 /.lib/
+
+#node
+
+*/node_modules
+*/bower_components
+*/bundle.js
