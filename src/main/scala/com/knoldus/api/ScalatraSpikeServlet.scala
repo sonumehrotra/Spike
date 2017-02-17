@@ -26,7 +26,7 @@ class ScalatraSpikeServlet extends ScalatraSpikeServer with AuthenticationSuppor
 val user = User("12345")
 
   get("/get") {
-   // basicAuth
+    basicAuth
     /** Publish a message with topic 'messages' */
     ampsClient.publish("messages", s"""{ "message" : "Hello ${user.id}!" }""")
     persistentActor ! "print"
@@ -40,6 +40,7 @@ val user = User("12345")
      ampsClient.publish("messages", s"""{ "message" : "Hello, Put from ${user.id}!" }""")
      persistentActor ! Command("put")
      "put"
+     "Hello World"
    }.getOrElse( "Put Response: You can't use the server " + GSSException.UNAUTHORIZED)
   }
 
@@ -49,6 +50,7 @@ val user = User("12345")
       persistentActor ! Command("post")
       persistentActor ! "snap"
       "snap"
+      "Hello World"
     }.getOrElse( "Post Response: You can't use the server " + GSSException.UNAUTHORIZED)
   }
 
@@ -58,6 +60,7 @@ val user = User("12345")
       persistentActor ! Command("delete")
       persistentActor ! "print"
       "print"
+      "Hello World"
     }.getOrElse( "Delete Response: You can't use the server " + GSSException.UNAUTHORIZED)
   }
 
