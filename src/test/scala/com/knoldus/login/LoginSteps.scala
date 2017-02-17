@@ -22,7 +22,7 @@ class LoginSteps extends EN with ScalaDsl with ScalatraSuite {
   }
 
   When("""^I hit on route get with value "([^"]*)"$""") { (arg0: String) =>
-    result = get(s"/$arg0") {
+    result = get(uri = s"/$arg0", headers = Map("scalatra" ->"scalatra")) {
       val stat = status
       val b = body
       (stat, b)
@@ -30,7 +30,7 @@ class LoginSteps extends EN with ScalaDsl with ScalatraSuite {
   }
 
   When("""^I hit on route put with value "([^"]*)"$""") { (arg0: String) =>
-    result = put(s"/$arg0") {
+    result = put(s"/$arg0", headers = Map("Authorization" ->"scalatra:scalatra")) {
       val stat = status
       val b = body
       (stat, b)
@@ -38,7 +38,7 @@ class LoginSteps extends EN with ScalaDsl with ScalatraSuite {
   }
 
   When("""^I hit on route post with value "([^"]*)"$""") { (arg0: String) =>
-    result = post(s"/$arg0") {
+    result = post(s"/$arg0", headers = Map("Authorization" ->"scalatra:scalatra")) {
       val stat = status
       val b = body
       (stat, b)
@@ -46,7 +46,7 @@ class LoginSteps extends EN with ScalaDsl with ScalatraSuite {
   }
 
   When("""^I hit on route delete with value "([^"]*)"$""") { (arg0: String) =>
-    result = delete(s"/$arg0") {
+    result = delete(s"/$arg0", headers = Map("Authorization" ->"scalatra:scalatra")) {
       val stat = status
       val b = body
       (stat, b)
