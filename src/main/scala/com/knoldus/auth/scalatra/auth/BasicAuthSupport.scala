@@ -3,7 +3,6 @@ package com.knoldus.auth.scalatra.auth
 import java.util.Base64
 import java.util.Locale
 import javax.servlet.http.{HttpServletRequest, HttpServletResponse}
-
 import org.scalatra.{ScalatraBase, Unauthorized}
 import org.scalatra.util.RicherString._
 
@@ -28,7 +27,7 @@ trait BasicAuthSupport[UserType <: AnyRef] { self: (ScalatraBase with ScentrySup
 
   def realm: String
 
-  protected def basicAuth()(implicit request: HttpServletRequest, response: HttpServletResponse) = {
+  protected def basicAuth()(implicit request: HttpServletRequest, response: HttpServletResponse): Option[UserType] = {
     val baReq = new BasicAuthStrategy.BasicAuthRequest(request)
     if (!baReq.providesAuth) {
       response.setHeader("WWW-Authenticate", "Basic realm=\"%s\"" format realm)
@@ -53,7 +52,9 @@ object BasicAuthStrategy {
 
     private def authorizationKey = AUTHORIZATION_KEYS.find(r.getHeader(_) != null)
 
-    def isBasicAuth = (false /: scheme) { (_, sch) => sch == "basic" }
+    def isBasicAuth = {
+      (false /: scheme) { (_, sch) => sch == "basic" }
+    }
     def providesAuth = authorizationKey.isDefined
 
     private[this] var _credentials: Option[(String, String)] = None

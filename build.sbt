@@ -18,6 +18,8 @@ scalaVersion := "2.11.8"
 
 resolvers += Classpaths.typesafeReleases
 
+resolvers += "typesafe" at "http://repo.typesafe.com/typesafe/releases/"
+
 libraryDependencies ++= Seq(
   "org.scalatra" %% "scalatra" % ScalatraVersion,
   "org.scalatra" %% "scalatra-scalate" % ScalatraVersion,

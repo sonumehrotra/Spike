@@ -18,5 +18,6 @@ object Publisher {
     client.connect(connectionUrl)
     client.logon
     client
+
   }
 }
