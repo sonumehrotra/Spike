@@ -5,16 +5,25 @@ angular.module('getModule',[])
       templateUrl : "app/components/getComponent/getComponent.html"
     }
   })
-  .controller('getModuleCtrl',['$scope','$http',function($scope,$http){
+  .controller('getModuleCtrl',['$scope','$http','myService',function($scope,$http,myService){
     $scope.msg = "This is GET component."
-    $scope.url = "http://localhost:8080/get"
+    $scope.url = ""; 
     $scope.response;
     $scope.sendRequest = function(){
-      $http({
-        method: 'GET',
-        url: $scope.url
-      }).then(function(response){
-        $scope.response = response.data;
-      })
+      myService.getUserData($scope.url).then(function(myReponseData) {
+        $scope.response = myReponseData
+      });
     }
   }])
+  .factory('myService',function($http,$q){
+    var service = this;
+    service.getUserData = function(url){
+      var deferred = $q.defer();
+      $http.get(url)
+      .then(function(data){
+        deferred.resolve(data);
+      });
+      return deferred.promise;
+    };
+    return service;
+  })
