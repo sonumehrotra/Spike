@@ -1,2 +1,16 @@
-<div>This is get component</div>
-<div>{{msg}}</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <form ng-submit="sendRequest()">
+        <div class="form-group">
+          <label for="url">URL</label>
+          <input type="text" class="form-control" id="url" aria-describedby="url-input" placeholder="Enter URL" ng-model="url">
+          <small id="url-input" class="form-text text-muted">URL to send GET request</small>
+          <div>
+            {{response | json}}
+          </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
