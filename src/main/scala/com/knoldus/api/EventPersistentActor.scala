@@ -6,12 +6,13 @@ package com.knoldus.api
 
 import akka.actor._
 import akka.persistence._
+import com.knoldus.persistence.PlainSQLHelper.UserDetails
 
-case class Command(data: String)
-case class Event(data: String)
+case class Command(userDetails: UserDetails)
+case class Event(userDetails: UserDetails)
 
-case class PersistEvent(events: List[String] = Nil) {
-  def updated(evt: Event): PersistEvent = copy(evt.data :: events)
+case class PersistEvent(events: List[UserDetails] = Nil) {
+  def updated(evt: Event): PersistEvent = copy(evt.userDetails :: events)
   def size: Int = events.length
   override def toString: String = events.reverse.toString
 }
@@ -33,14 +34,14 @@ class EventPersistentActor extends PersistentActor {
   }
 
   val receiveCommand: Receive = {
-    case Command(data) =>
-      persist(Event(s"${data}-${numberOfEvents}"))(updateEventState)
-      persist(Event(s"${data}-${numberOfEvents + 1}")) { event =>
+    case Command(userDetails) =>
+      persist(Event(userDetails))(updateEventState)
+      persist(Event(userDetails)) { event =>
         updateEventState(event)
         context.system.eventStream.publish(event)
       }
     case "snap"  => saveSnapshot(state)
-    case "print" => println(state)
+    case str: String => println(state)
   }
 
 }

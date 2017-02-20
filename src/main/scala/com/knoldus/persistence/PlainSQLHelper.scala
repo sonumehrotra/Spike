@@ -49,7 +49,7 @@ object PlainSQLHelper {
       case sqlData: Seq[(Int, String, String, Int)] => {
         val (userId, name, gender, age) = sqlData.head
         val item = UserDetails(id, name, gender, age)
-        s"PlainSQLHelper.selectRawTableObject() Id: ${item.id}, Name: ${item.name}, Gender: ${item.gender}, Age: ${item.age}"
+        s"Id: ${item.id}, Name: ${item.name}, Gender: ${item.gender}, Age: ${item.age}"
       }
       case _ => s"Error"
     }

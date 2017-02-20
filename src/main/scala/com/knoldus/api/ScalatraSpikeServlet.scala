@@ -39,7 +39,7 @@ class ScalatraSpikeServlet extends ScalatraSpikeServer with AuthenticationSuppor
     params.get("id") match {
       case Some(id) => {
         ampsClient.publish("messages", s"""{ "message" : "Hello ${user.id}!" }""")
-        persistentActor ! "print"
+        persistentActor ! s"Getting details for id $id"
         new AsyncResult() {
           override val is: Future[String] = plainSQLHelper.getDetailsForId(id.toInt)
         }
@@ -64,13 +64,12 @@ class ScalatraSpikeServlet extends ScalatraSpikeServer with AuthenticationSuppor
 
   post("/insert") {
     basicAuth.map { user =>
-      ampsClient.publish("messages", s"""{ "message" : "Hello, Post from ${user.id}!" }""")
-      persistentActor ! Command("post")
-      persistentActor ! "snap"
       val id = params.get("id").getOrElse("0").toInt
       val name = params.get("name").getOrElse("")
       val gender = params.get("gender").getOrElse("")
       val age = params.get("age").getOrElse("0").toInt
+      ampsClient.publish("messages", s"""{ "message" : "Hello, Post from ${user.id}!" }""")
+      persistentActor ! Command(UserDetails(id, name, gender, age))
       new AsyncResult() {
         override val is: Future[String] = plainSQLHelper.insertUsersDetails(UserDetails(id, name, gender, age))
       }
@@ -81,8 +80,8 @@ class ScalatraSpikeServlet extends ScalatraSpikeServer with AuthenticationSuppor
     basicAuth.map { user =>
       params.get("id") match {
         case Some(id) => {
-          ampsClient.publish("messages", s"""{ "message" : "Hello ${user.id}!" }""")
-          persistentActor ! "print"
+          ampsClient.publish("messages", s"""{ "message" : "Hello $id!" }""")
+          persistentActor ! s"Deleting for id $id"
           new AsyncResult() {
             override val is: Future[String] = plainSQLHelper.deleteUserDetails(id.toInt)
           }
