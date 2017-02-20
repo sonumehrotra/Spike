@@ -11,7 +11,7 @@ object SlickORMDemoApp extends App {
   // PLAIN SQL QUERIES
   PlainSQLHelper.selectScalarObject(db)
   PlainSQLHelper.selectTupleObject(db)
-  PlainSQLHelper.selectRawTableObject(db)
+  PlainSQLHelper.getDetailsForId(5)
 
   // INSERT multiple
   val itemsToInsert = List(

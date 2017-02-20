@@ -10,7 +10,7 @@ import org.scalatra.test.scalatest._
 
 class CucumberTestSuite extends CucumberRunner
 
-class LoginSteps extends EN with ScalaDsl with ScalatraSuite {
+class PersonSteps extends EN with ScalaDsl with ScalatraSuite {
 
   addServlet(classOf[ScalatraSpikeServlet], "/*")
   var result: (Int, String) = _
