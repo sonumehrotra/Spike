@@ -1,27 +1,30 @@
 
 angular.module('getModule',[])
-  .directive('getDirective',function(){
-    return {
-      templateUrl : "app/components/getComponent/getComponent.html"
-    }
+  .component('getDirective',{
+      templateUrl : "app/components/getComponent/getComponent.html",
+      controller: 'getModuleCtrl'
   })
-  .controller('getModuleCtrl',['$scope','$http','myService',function($scope,$http,myService){
+  .controller('getModuleCtrl',['$scope','$http','myGetService',function($scope,$http,myGetService){
     $scope.msg = "This is GET component."
-    $scope.url = ""; 
+    $scope.url = "";
     $scope.response;
     $scope.sendRequest = function(){
-      myService.getUserData($scope.url).then(function(myReponseData) {
+      myGetService.getUserData($scope.url).then(function(myReponseData) {
         $scope.response = myReponseData
+      },function(err){
+        $scope.response = "Something went wrong, try again";
       });
     }
   }])
-  .factory('myService',function($http,$q){
+  .factory('myGetService',function($http,$q){
     var service = this;
     service.getUserData = function(url){
       var deferred = $q.defer();
       $http.get(url)
       .then(function(data){
         deferred.resolve(data);
+      },function(err){
+        deferred.reject(err);
       });
       return deferred.promise;
     };
