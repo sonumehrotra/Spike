@@ -1,10 +1,9 @@
-
 angular.module('getModule',[])
   .component('getDirective',{
       templateUrl : "app/components/getComponent/getComponent.html",
       controller: 'getModuleCtrl'
   })
-  .controller('getModuleCtrl',['$scope','$http','myGetService',function($scope,$http,myGetService){
+  .controller('getModuleCtrl',['$scope','myGetService',function($scope,myGetService){
     $scope.msg = "This is GET component."
     $scope.url = "";
     $scope.response;
@@ -29,4 +28,4 @@ angular.module('getModule',[])
       return deferred.promise;
     };
     return service;
-  })
+  });

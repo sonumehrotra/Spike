@@ -10,8 +10,6 @@ describe('GET Component ', function() {
   beforeEach(inject(function($q, _myGetService_) {
     deferred = $q.defer();
     myGetService = _myGetService_;
-    //spyOn(myService, 'getUserData').and.callThrough();
-
   }));
 
   beforeEach(inject(function(_$rootScope_,_$controller_){
