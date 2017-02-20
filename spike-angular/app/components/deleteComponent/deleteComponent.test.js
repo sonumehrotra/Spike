@@ -1,15 +1,15 @@
 describe('GET Component ', function() {
 
-  beforeEach(module('getModule'));
+  beforeEach(module('deleteModule'));
 
   var controller,
-  myGetService,
+  myDeleteService,
   deferred,
   scope;
 
-  beforeEach(inject(function($q, _myGetService_) {
+  beforeEach(inject(function($q, _myDeleteService_) {
     deferred = $q.defer();
-    myGetService = _myGetService_;
+    myDeleteService = _myDeleteService_;
     //spyOn(myService, 'getUserData').and.callThrough();
 
   }));
@@ -19,9 +19,9 @@ describe('GET Component ', function() {
     rootScope = _$rootScope_;
     controller = _$controller_;
     scope = rootScope.$new();
-    controller = controller('getModuleCtrl',{
+    controller = controller('deleteModuleCtrl',{
       $scope : scope,
-      myGetService : myGetService
+      myDeleteService : myDeleteService
     })
 
   }));
@@ -31,7 +31,7 @@ describe('GET Component ', function() {
   })
 
   it("should send response",function(){
-    spyOn(myGetService, 'getUserData').and.returnValue(deferred.promise);
+    spyOn(myDeleteService, 'deleteUserData').and.returnValue(deferred.promise);
     var expected = {'data':{'email':"pushpendu@gmail.com"}};
     scope.sendRequest(scope.url);
     deferred.resolve(expected);
@@ -40,7 +40,7 @@ describe('GET Component ', function() {
   })
 
   it("should show error text when error occurs at server",function(){
-    spyOn(myGetService, 'getUserData').and.returnValue(deferred.promise);
+    spyOn(myDeleteService, 'deleteUserData').and.returnValue(deferred.promise);
     var expected = "Something went wrong, try again";
     scope.sendRequest(scope.url);
     deferred.reject(expected);

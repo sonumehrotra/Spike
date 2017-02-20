@@ -9,7 +9,7 @@ angular.module('postModule',[])
     $scope.url = "http://localhost:8080/post";
     $scope.response;
     $scope.sendRequest = function(){
-      myPostService.getUserData($scope.url).then(function(myReponseData) {
+      myPostService.postUserData($scope.url).then(function(myReponseData) {
         $scope.response = myReponseData
       },function(err){
         $scope.response = "Something went wrong, try again";
@@ -18,7 +18,7 @@ angular.module('postModule',[])
   }])
   .factory('myPostService',function($http,$q){
     var service = this;
-    service.getUserData = function(url){
+    service.postUserData = function(url){
       var deferred = $q.defer();
       $http.post(url)
       .then(function(data){
