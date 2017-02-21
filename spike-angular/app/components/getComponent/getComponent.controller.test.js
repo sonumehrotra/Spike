@@ -34,7 +34,7 @@ describe('GET Component ', function() {
     scope.sendRequest(scope.url);
     deferred.resolve(expected);
     scope.$apply();
-    expect(scope.response).toBe(expected);
+    expect(scope.response).toBe(expected.data);
   })
 
   it("should show error text when error occurs at server",function(){
