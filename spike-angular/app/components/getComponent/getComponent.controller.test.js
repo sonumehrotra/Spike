@@ -1,17 +1,15 @@
-describe('PUT Component ', function() {
+describe('GET Component ', function() {
 
-  beforeEach(module('putModule'));
+  beforeEach(module('getModule'));
 
   var controller,
-  myPutService,
+  myGetService,
   deferred,
   scope;
 
-  beforeEach(inject(function($q, _myPutService_) {
+  beforeEach(inject(function($q, _myGetService_) {
     deferred = $q.defer();
-    myPutService = _myPutService_;
-    //spyOn(myService, 'getUserData').and.callThrough();
-
+    myGetService = _myGetService_;
   }));
 
   beforeEach(inject(function(_$rootScope_,_$controller_){
@@ -19,9 +17,9 @@ describe('PUT Component ', function() {
     rootScope = _$rootScope_;
     controller = _$controller_;
     scope = rootScope.$new();
-    controller = controller('putModuleCtrl',{
+    controller = controller('getModuleCtrl',{
       $scope : scope,
-      myPutService : myPutService
+      myGetService : myGetService
     })
 
   }));
@@ -31,16 +29,16 @@ describe('PUT Component ', function() {
   })
 
   it("should send response",function(){
-    spyOn(myPutService, 'putUserData').and.returnValue(deferred.promise);
+    spyOn(myGetService, 'getUserData').and.returnValue(deferred.promise);
     var expected = {'data':{'email':"pushpendu@gmail.com"}};
     scope.sendRequest(scope.url);
     deferred.resolve(expected);
     scope.$apply();
-    expect(scope.response).toBe(expected);
+    expect(scope.response).toBe(expected.data);
   })
 
   it("should show error text when error occurs at server",function(){
-    spyOn(myPutService, 'putUserData').and.returnValue(deferred.promise);
+    spyOn(myGetService, 'getUserData').and.returnValue(deferred.promise);
     var expected = "Something went wrong, try again";
     scope.sendRequest(scope.url);
     deferred.reject(expected);

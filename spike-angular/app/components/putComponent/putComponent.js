@@ -9,8 +9,12 @@ angular.module('putModule',[])
     $scope.url = "";
     $scope.response;
     $scope.sendRequest = function(){
-      myPutService.putUserData($scope.url).then(function(myReponseData) {
-        $scope.response = myReponseData
+      var config = {headers: {
+            'Authorization': 'Basic c2NhbGF0cmE6c2NhbGF0cmE='
+        }
+      };
+      myPutService.putUserData($scope.url,config).then(function(myReponseData) {
+        $scope.response = myReponseData.data
       },function(err){
         $scope.response = "Something went wrong, try again";
       });
@@ -18,9 +22,9 @@ angular.module('putModule',[])
   }])
   .factory('myPutService',function($http,$q){
     var service = this;
-    service.putUserData = function(url){
+    service.putUserData = function(url, config){
       var deferred = $q.defer();
-      $http.put(url)
+      $http.put(url,{},config)
       .then(function(data){
         deferred.resolve(data);
       },function(err){

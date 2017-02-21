@@ -9,8 +9,12 @@ angular.module('deleteModule',[])
     $scope.url = "";
     $scope.response;
     $scope.sendRequest = function(){
-      myDeleteService.deleteUserData($scope.url).then(function(myReponseData) {
-        $scope.response = myReponseData
+      var config = {headers: {
+            'Authorization': 'Basic c2NhbGF0cmE6c2NhbGF0cmE='
+        }
+      };
+      myDeleteService.deleteUserData($scope.url,config).then(function(myReponseData) {
+        $scope.response = myReponseData.data
       },function(err){
         $scope.response = "Something went wrong, try again";
       });
@@ -18,9 +22,9 @@ angular.module('deleteModule',[])
   }])
   .factory('myDeleteService',function($http,$q){
     var service = this;
-    service.deleteUserData = function(url){
+    service.deleteUserData = function(url,config){
       var deferred = $q.defer();
-      $http.delete(url)
+      $http.delete(url,config)
       .then(function(data){
         deferred.resolve(data);
       },function(err){
