@@ -33,7 +33,7 @@ formatter.match({
   "location": "PersonSteps.scala:21"
 });
 formatter.result({
-  "duration": 1168943242,
+  "duration": 240963280,
   "status": "passed"
 });
 formatter.match({
@@ -46,7 +46,7 @@ formatter.match({
   "location": "PersonSteps.scala:40"
 });
 formatter.result({
-  "duration": 21625312191,
+  "duration": 14466930895,
   "status": "passed"
 });
 formatter.match({
@@ -59,7 +59,7 @@ formatter.match({
   "location": "PersonSteps.scala:56"
 });
 formatter.result({
-  "duration": 54529934,
+  "duration": 14175701,
   "status": "passed"
 });
 formatter.scenario({
@@ -89,7 +89,7 @@ formatter.match({
   "location": "PersonSteps.scala:21"
 });
 formatter.result({
-  "duration": 42356,
+  "duration": 57065,
   "status": "passed"
 });
 formatter.match({
@@ -102,7 +102,7 @@ formatter.match({
   "location": "PersonSteps.scala:24"
 });
 formatter.result({
-  "duration": 12197000897,
+  "duration": 12057117258,
   "status": "passed"
 });
 formatter.match({
@@ -115,7 +115,7 @@ formatter.match({
   "location": "PersonSteps.scala:56"
 });
 formatter.result({
-  "duration": 79403,
+  "duration": 176707,
   "status": "passed"
 });
 formatter.scenario({
@@ -145,7 +145,7 @@ formatter.match({
   "location": "PersonSteps.scala:21"
 });
 formatter.result({
-  "duration": 18949,
+  "duration": 44862,
   "status": "passed"
 });
 formatter.match({
@@ -158,7 +158,7 @@ formatter.match({
   "location": "PersonSteps.scala:32"
 });
 formatter.result({
-  "duration": 12166435412,
+  "duration": 12118785761,
   "status": "passed"
 });
 formatter.match({
@@ -171,7 +171,7 @@ formatter.match({
   "location": "PersonSteps.scala:56"
 });
 formatter.result({
-  "duration": 227773,
+  "duration": 235525,
   "status": "passed"
 });
 formatter.scenario({
@@ -201,7 +201,7 @@ formatter.match({
   "location": "PersonSteps.scala:21"
 });
 formatter.result({
-  "duration": 83706,
+  "duration": 45893,
   "status": "passed"
 });
 formatter.match({
@@ -214,7 +214,7 @@ formatter.match({
   "location": "PersonSteps.scala:48"
 });
 formatter.result({
-  "duration": 12061790223,
+  "duration": 12080203655,
   "status": "passed"
 });
 formatter.match({
@@ -227,7 +227,7 @@ formatter.match({
   "location": "PersonSteps.scala:56"
 });
 formatter.result({
-  "duration": 138232,
+  "duration": 255773,
   "status": "passed"
 });
 });

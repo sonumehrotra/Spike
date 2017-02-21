@@ -10,7 +10,7 @@ class ScalatraSpikeServletSteps extends ScalatraSpec {def is =
 
   addServlet(classOf[ScalatraSpikeServlet], "/*")
 
-  def getRoot200 = get("/") {
+  def getRoot200 = get(uri = s"/get/1", headers = Map("Authorization" ->"Basic c2NhbGF0cmE6c2NhbGF0cmE=")) {
     status must_== 200
   }
 }
