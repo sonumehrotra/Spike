@@ -1,16 +1,16 @@
-$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("Login.feature");
+$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("Person.feature");
 formatter.feature({
   "line": 1,
-  "name": "Login",
+  "name": "CRUD with Person table",
   "description": "In order to avoid making mistakes\nAs a developer\nI want to check the login",
-  "id": "login",
+  "id": "crud-with-person-table",
   "keyword": "Feature"
 });
 formatter.scenario({
   "line": 6,
-  "name": "Check get request for login",
+  "name": "Check post request for login",
   "description": "",
-  "id": "login;check-get-request-for-login",
+  "id": "crud-with-person-table;check-post-request-for-login",
   "type": "scenario",
   "keyword": "Scenario"
 });
@@ -21,52 +21,52 @@ formatter.step({
 });
 formatter.step({
   "line": 8,
-  "name": "I hit on route get with value \"get\"",
+  "name": "I hit on route post with value \"insert?id\u003d11\u0026name\u003dAA\u0026age\u003d20\u0026gender\u003dmale\"",
   "keyword": "When "
 });
 formatter.step({
   "line": 9,
-  "name": "the response should be \"Hello World\"",
+  "name": "the response should be \"User details inserted successufully\"",
   "keyword": "Then "
 });
 formatter.match({
-  "location": "LoginSteps.scala:21"
+  "location": "PersonSteps.scala:21"
 });
 formatter.result({
-  "duration": 150083388,
+  "duration": 1168943242,
   "status": "passed"
 });
 formatter.match({
   "arguments": [
     {
-      "val": "get",
-      "offset": 31
+      "val": "insert?id\u003d11\u0026name\u003dAA\u0026age\u003d20\u0026gender\u003dmale",
+      "offset": 32
     }
   ],
-  "location": "LoginSteps.scala:24"
+  "location": "PersonSteps.scala:40"
 });
 formatter.result({
-  "duration": 1522176679,
+  "duration": 21625312191,
   "status": "passed"
 });
 formatter.match({
   "arguments": [
     {
-      "val": "Hello World",
+      "val": "User details inserted successufully",
       "offset": 24
     }
   ],
-  "location": "LoginSteps.scala:56"
+  "location": "PersonSteps.scala:56"
 });
 formatter.result({
-  "duration": 7355526,
+  "duration": 54529934,
   "status": "passed"
 });
 formatter.scenario({
   "line": 11,
-  "name": "Check post request for login",
+  "name": "Check get request for login",
   "description": "",
-  "id": "login;check-post-request-for-login",
+  "id": "crud-with-person-table;check-get-request-for-login",
   "type": "scenario",
   "keyword": "Scenario"
 });
@@ -77,157 +77,157 @@ formatter.step({
 });
 formatter.step({
   "line": 13,
-  "name": "I hit on route post with value \"post\"",
+  "name": "I hit on route get with value \"get/11\"",
   "keyword": "When "
 });
 formatter.step({
   "line": 14,
-  "name": "the response should be \"Hello World\"",
+  "name": "the response should be \"Id: 11, Name: AA, Gender: male, Age: 20\"",
   "keyword": "Then "
 });
 formatter.match({
-  "location": "LoginSteps.scala:21"
+  "location": "PersonSteps.scala:21"
 });
 formatter.result({
-  "duration": 31791,
+  "duration": 42356,
   "status": "passed"
 });
 formatter.match({
   "arguments": [
     {
-      "val": "post",
-      "offset": 32
-    }
-  ],
-  "location": "LoginSteps.scala:40"
-});
-formatter.result({
-  "duration": 30560041,
-  "status": "passed"
-});
-formatter.match({
-  "arguments": [
-    {
-      "val": "Hello World",
-      "offset": 24
-    }
-  ],
-  "location": "LoginSteps.scala:56"
-});
-formatter.result({
-  "duration": 141913,
-  "status": "passed"
-});
-formatter.scenario({
-  "line": 16,
-  "name": "Check put request for login",
-  "description": "",
-  "id": "login;check-put-request-for-login",
-  "type": "scenario",
-  "keyword": "Scenario"
-});
-formatter.step({
-  "line": 17,
-  "name": "my server is running",
-  "keyword": "Given "
-});
-formatter.step({
-  "line": 18,
-  "name": "I hit on route put with value \"put\"",
-  "keyword": "When "
-});
-formatter.step({
-  "line": 19,
-  "name": "the response should be \"Hello World\"",
-  "keyword": "Then "
-});
-formatter.match({
-  "location": "LoginSteps.scala:21"
-});
-formatter.result({
-  "duration": 52282,
-  "status": "passed"
-});
-formatter.match({
-  "arguments": [
-    {
-      "val": "put",
+      "val": "get/11",
       "offset": 31
     }
   ],
-  "location": "LoginSteps.scala:32"
+  "location": "PersonSteps.scala:24"
 });
 formatter.result({
-  "duration": 15252985,
+  "duration": 12197000897,
   "status": "passed"
 });
 formatter.match({
   "arguments": [
     {
-      "val": "Hello World",
+      "val": "Id: 11, Name: AA, Gender: male, Age: 20",
       "offset": 24
     }
   ],
-  "location": "LoginSteps.scala:56"
+  "location": "PersonSteps.scala:56"
 });
 formatter.result({
-  "duration": 99018,
+  "duration": 79403,
   "status": "passed"
 });
 formatter.scenario({
-  "line": 21,
-  "name": "Check delete request for login",
+  "line": 17,
+  "name": "Check put request for login",
   "description": "",
-  "id": "login;check-delete-request-for-login",
+  "id": "crud-with-person-table;check-put-request-for-login",
   "type": "scenario",
   "keyword": "Scenario"
 });
 formatter.step({
-  "line": 22,
+  "line": 18,
   "name": "my server is running",
   "keyword": "Given "
 });
 formatter.step({
-  "line": 23,
-  "name": "I hit on route delete with value \"delete\"",
+  "line": 19,
+  "name": "I hit on route put with value \"update?id\u003d11\u0026name\u003dAA\u0026age\u003d20\u0026gender\u003dmale\"",
   "keyword": "When "
 });
 formatter.step({
-  "line": 24,
-  "name": "the response should be \"Hello World\"",
+  "line": 20,
+  "name": "the response should be \"User details updated successufully\"",
   "keyword": "Then "
 });
 formatter.match({
-  "location": "LoginSteps.scala:21"
+  "location": "PersonSteps.scala:21"
 });
 formatter.result({
-  "duration": 43780,
+  "duration": 18949,
   "status": "passed"
 });
 formatter.match({
   "arguments": [
     {
-      "val": "delete",
-      "offset": 34
+      "val": "update?id\u003d11\u0026name\u003dAA\u0026age\u003d20\u0026gender\u003dmale",
+      "offset": 31
     }
   ],
-  "location": "LoginSteps.scala:48"
+  "location": "PersonSteps.scala:32"
 });
 formatter.result({
-  "duration": 63382695,
+  "duration": 12166435412,
   "status": "passed"
 });
 formatter.match({
   "arguments": [
     {
-      "val": "Hello World",
+      "val": "User details updated successufully",
       "offset": 24
     }
   ],
-  "location": "LoginSteps.scala:56"
+  "location": "PersonSteps.scala:56"
 });
 formatter.result({
-  "duration": 92977,
+  "duration": 227773,
+  "status": "passed"
+});
+formatter.scenario({
+  "line": 22,
+  "name": "Check delete request for login",
+  "description": "",
+  "id": "crud-with-person-table;check-delete-request-for-login",
+  "type": "scenario",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "line": 23,
+  "name": "my server is running",
+  "keyword": "Given "
+});
+formatter.step({
+  "line": 24,
+  "name": "I hit on route delete with value \"delete/11\"",
+  "keyword": "When "
+});
+formatter.step({
+  "line": 25,
+  "name": "the response should be \"User details deleted successufully\"",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "PersonSteps.scala:21"
+});
+formatter.result({
+  "duration": 83706,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "delete/11",
+      "offset": 34
+    }
+  ],
+  "location": "PersonSteps.scala:48"
+});
+formatter.result({
+  "duration": 12061790223,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "User details deleted successufully",
+      "offset": 24
+    }
+  ],
+  "location": "PersonSteps.scala:56"
+});
+formatter.result({
+  "duration": 138232,
   "status": "passed"
 });
 });

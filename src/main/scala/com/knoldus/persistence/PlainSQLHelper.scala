@@ -78,8 +78,7 @@ object PlainSQLHelper {
   def updateUserDetails(userDetails: UserDetails) = {
 
     val database: Database = Database.forConfig("dms")
-    val s = s"""UPDATE Person SET name='${userDetails.name}',gender='${userDetails.gender}',age='${userDetails.age}' WHERE id=${userDetails.id};"""
-    val action = sql"""UPDATE Person SET name='${userDetails.name}',gender='${userDetails.gender}',age='${userDetails.age}' WHERE id=${userDetails.id};""".as[String]
+    val action = sqlu"""UPDATE Person SET name='#${userDetails.name}',gender='#${userDetails.gender}',age=#${userDetails.age} WHERE id=${userDetails.id};"""
     database.run(action) map {
       case item => "User details updated successufully"
       case _ => "Error"

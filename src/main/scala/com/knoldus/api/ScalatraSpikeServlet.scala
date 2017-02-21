@@ -7,11 +7,11 @@ import com.knoldus.persistence.PlainSQLHelper
 import com.knoldus.persistence.PlainSQLHelper.UserDetails
 import com.typesafe.config.ConfigFactory
 import org.ietf.jgss.GSSException
-import org.scalatra.{AsyncResult, FutureSupport}
+import org.scalatra.{AsyncResult, CorsSupport, FutureSupport}
 
 import scala.concurrent.{ExecutionContext, Future}
 
-class ScalatraSpikeServlet extends ScalatraSpikeServer with AuthenticationSupport with FutureSupport {
+class ScalatraSpikeServlet extends ScalatraSpikeServer with AuthenticationSupport with FutureSupport with CorsSupport {
   implicit protected def executor: ExecutionContext = ExecutionContext.global
 
 
@@ -33,6 +33,11 @@ class ScalatraSpikeServlet extends ScalatraSpikeServer with AuthenticationSuppor
 
 
   val user = User("12345")
+
+  options("/*"){
+    response.setHeader("Access-Control-Allow-Headers", request.getHeader("Access-Control-Request-Headers"));
+  }
+
 
   get("/get/:id") {
     basicAuth
