@@ -21,3 +21,11 @@ CREATE TABLE [dbo].[Items](
 GO
 
 
+CREATE TABLE [dbo].[Person] (
+  [id]     [int]  NOT NULL,
+  [name]   [varchar](MAX)        NOT NULL,
+  [gender] [varchar](10)         NOT NULL,
+  [age]    [int]                 NOT NULL,
+)
+
+GO
