@@ -33,7 +33,7 @@ class ScalatraSpikeServlet extends ScalatraSpikeServer with AuthenticationSuppor
 
   val authenticator = SpnegoAuthenticator.apply()
 
-  def authenticate(spnegoAuthenticator: SpnegoAuthenticator)(implicit request: HttpServletRequest, response: HttpServletResponse): Future[HttpServletResponse] = {
+  def authenticate(spnegoAuthenticator: SpnegoAuthenticator)(implicit request: HttpServletRequest, response: HttpServletResponse): Future[(HttpServletResponse,String)] = {
     println("RememberMeStrategy: attempting authentication")
     spnegoAuthenticator.auth(request,response)
   }
@@ -42,12 +42,11 @@ class ScalatraSpikeServlet extends ScalatraSpikeServer with AuthenticationSuppor
   val user = User("12345")
 
   get("/get") {
-    authenticate(authenticator).map{s=>
+    authenticate(authenticator).map{ result=>
       /** Publish a message with topic 'messages' */
       ampsClient.publish("messages", s"""{ "message" : "Hello ${user.id}!" }""")
       persistentActor ! "print"
-
-      "Hello World" + s.getStatus
+      "Hello World" + result._2
     }
     }
 

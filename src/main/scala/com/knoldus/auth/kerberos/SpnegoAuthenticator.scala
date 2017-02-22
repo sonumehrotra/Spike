@@ -65,7 +65,7 @@ class SpnegoAuthenticator(principal: String, keytab: String, debug: Boolean, dom
   private def cookieToken(ctx: HttpServletRequest): Option[Either[Rejection, Token]] = try {
     println(ctx.getCookies)
     log.debug("@@@@@@@@@@@@@@@@@@@@  1")
-    val sd: Option[Token] = if(ctx.getCookies.exists(_.getName == cookieName)){
+    val sd: Option[Token] = if(Option(ctx.getCookies).isDefined){
       val sd: Option[Token] = ctx.getCookies.find(_.getName == cookieName).map { cookie => log.debug("cookie found"); cookie } match {
         case Some(cookie) =>
           log.debug("@@@@@@@@@@@@@@@@@@@@  3")
@@ -145,20 +145,20 @@ class SpnegoAuthenticator(principal: String, keytab: String, debug: Boolean, dom
     Left(AuthenticationFailedRejection("CredentialsMissing", List(challengeHeader())))
   }
 
-  def auth(ctx: HttpServletRequest, response: HttpServletResponse): Future[HttpServletResponse] = Future {
+  def auth(ctx: HttpServletRequest, response: HttpServletResponse): Future[(HttpServletResponse,String)] = Future {
     val resp: Either[Rejection, Token] = cookieToken(ctx).orElse(kerberosNegotiate(ctx)).getOrElse(initiateNegotiations)
     resp match {
-      case Left(rej) => response.setHeader("WWW-Authenticate", "negotiate realm=\"%s\"" format rej)
-        response.sendError(401, "Unauthenticated")
+      case Left(rej) => response.setHeader("WWW-Authenticate", negotiate)
+       // response.sendError(401, "Unauthenticated")
         response.setStatus(401)
-        response
+        (response,"")
       case Right(token) =>
         val cookie = new Cookie(cookieName, tokens.serialize(token))
         cookie.setDomain(domain.getOrElse(""))
         cookie.setPath(path.getOrElse(""))
         response.addCookie(cookie)
         response.setStatus(200)
-        response
+        (response,token.principal)
     }
   }
 
