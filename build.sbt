@@ -44,7 +44,10 @@ libraryDependencies ++= Seq(
   "net.sourceforge.jtds"      %     "jtds" % "1.3.1",
   "com.typesafe.slick"        %%    "slick"               %   "3.0.0",
   "com.typesafe.slick"        %%    "slick-extensions"    %   "3.0.0",
-  "org.scala-lang.modules" % "scala-async_2.11" % "0.9.6-RC2"
+  "org.scala-lang.modules" % "scala-async_2.11" % "0.9.6-RC2",
+  "commons-codec" % "commons-codec" % "1.4" % "compile",
+  "org.slf4j" % "slf4j-api" % "1.7.5" % "compile",
+  "com.typesafe.akka" %% "akka-slf4j" % "2.4.11" % "compile"
 )
 
 scalateTemplateConfig in Compile := {
