@@ -67,7 +67,7 @@ enablePlugins(JettyPlugin)
 
 enablePlugins(CucumberPlugin)
 
-CucumberPlugin.glue := "com/knoldus/login/"
+CucumberPlugin.glue := "com/knoldus/login/" 
 
 testFrameworks += new TestFramework("com.knoldus")
 
